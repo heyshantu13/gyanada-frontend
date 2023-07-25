@@ -3,7 +3,7 @@ import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   const handleProfileBtn = () => {
     setIsActive((prev) => !prev);
