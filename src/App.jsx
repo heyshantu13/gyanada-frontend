@@ -2,14 +2,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { LuMenu } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
+import { useSelector } from "react-redux";
 
 const App = () => {
   const [isActive, setIsActive] = useState(true);
+
+  const data = useSelector((state) => state.user.token);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!data) {
+      navigate("/login");
+    }
+  }, [data]);
 
   const handleMenu = () => {
     setIsActive((prev) => !prev);

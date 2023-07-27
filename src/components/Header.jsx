@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { logOut } from "../redux/userSlice";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
@@ -9,10 +11,13 @@ const Header = () => {
     setIsActive((prev) => !prev);
   };
 
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const handleLogOut = () => {
-    navigate("/login")
-  }
+    dispatch(logOut());
+    navigate("/login");
+  };
 
   return (
     <header className="header">
@@ -28,8 +33,12 @@ const Header = () => {
         </button>
         {isActive && (
           <div onClick={handleProfileBtn} className="expanded">
-            <Link className="expanded--actions" to="/profile">Profile</Link>
-            <button onClick={handleLogOut} className="expanded--actions">Log out</button>
+            <Link className="expanded--actions" to="/profile">
+              Profile
+            </Link>
+            <button onClick={handleLogOut} className="expanded--actions">
+              Log out
+            </button>
           </div>
         )}
       </div>

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { notify } from "../components/ToastMessage";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setToken } from "../redux/userSlice";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({
@@ -9,17 +12,31 @@ const Login = () => {
     password: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (userDetails.email && userDetails.password) {
-      // Submit logic here
-      notify("✅ Login Successful")
-      setTimeout(() => navigate("/"), 3000) //? Only to test
-    } else {
-      notify("⚠️ Please enter the login details")
+      try {
+        const { email, password } = userDetails;
+        if (!email & !password) {
+          notify("⚠️ Please enter the login details");
+        } else {
+          const { data } = await axios.post(
+            "http://localhost:8081/api/web/login",
+            { email, password }
+          );
+          dispatch(setToken(data.data.token));
+          if (data.data.role === "admin") {
+            notify(`✅ ${data.message}`);
+            setTimeout(() => navigate("/"), 4000);
+          }
+        }
+      } catch (error) {
+        notify("⚠️ You have entered invalid email and password");
+      }
     }
   };
 
