@@ -9,33 +9,34 @@ import Login from "./pages/Login";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/admin",
     element: <App />,
     children: [
+      // Define other admin-related routes here
       {
-        path: "/",
+        path: "dashboard", // Define the "/dashboard" route here independently
         element: <Dashboard />,
       },
       {
-        path: "/my-forms",
+        path: "forms",
         element: <MyForms />,
       },
       {
-        path: "/my-agents",
+        path: "agents",
         element: <MyAgents />,
       },
       {
-        path: "/add-form",
+        path: "create/form",
         element: <AddForm />,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <Profile />,
       },
     ],
   },
   {
-    path: "/login",
+    path: "/", // Move the "/" route outside the "/admin" route
     element: <Login />,
   },
 ]);
