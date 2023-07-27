@@ -16,7 +16,8 @@ const Login = () => {
 
     if (userDetails.email && userDetails.password) {
       // Submit logic here
-      navigate("/")
+      notify("✅ Login Successful")
+      setTimeout(() => navigate("/"), 3000) //? Only to test
     } else {
       notify("⚠️ Please enter the login details")
     }

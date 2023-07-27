@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Viewer from "../components/Viewer";
 
 const MyForms = () => {
   return (
@@ -9,6 +10,9 @@ const MyForms = () => {
           Add Form
         </Link>
       </header>
+      <div>
+        <Viewer />
+      </div>
     </div>
   );
 };

@@ -297,3 +297,15 @@ p {
 .login--btn:hover {
   background-color: #070a52;
 }
+
+
+
+/* - - - - - - - Form Builder - - - - - -  */
+
+.form--builder--header {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

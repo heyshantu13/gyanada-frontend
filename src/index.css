@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+html {
+  /* scrollbar-width: thin; */
+}
+
 body {
   background-color: #f1f1f1 !important;
   font-family: "Inter", sans-serif !important;
