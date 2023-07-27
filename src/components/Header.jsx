@@ -23,7 +23,7 @@ const Header = () => {
           <FaUser />
           <div className="profile-btn--text">
             <h6>Anshul kulkarni</h6>
-            <p>Admin</p>
+            <p>Welcome</p>
           </div>
         </button>
         {isActive && (

@@ -13,19 +13,19 @@ const Sidebar = () => {
 
       <ul className="nav--list">
         <li className="nav--item">
-          <NavLink to="/">
+          <NavLink to="/admin/dashboard" activeClassName="active">
             <img src={dashboardIcon} alt="dashboard icon" />
             <p>Dashboard</p>
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/my-forms">
+          <NavLink to="/admin/forms" activeClassName="active">
             <img src={formsIcon} alt="forms icon" />
             <p>My Forms</p>
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/my-agents">
+          <NavLink to="/admin/agents" activeClassName="active">
             <img src={agentsIcon} alt="agents icon" />
             <p>Agents</p>
           </NavLink>
