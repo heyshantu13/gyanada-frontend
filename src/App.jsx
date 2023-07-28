@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
@@ -6,7 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { LuMenu } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import { useSelector } from "react-redux";
 
 const App = () => {

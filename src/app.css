@@ -38,7 +38,9 @@
 .sidebar--container {
   width: 100%;
   max-width: 230px;
-  min-height: 100%;
+  min-height: 100vh;
+  border: 1px solid #070a52;
+  /* height: 100%; */
 }
 
 .menu--btn {
@@ -63,6 +65,7 @@
 
 .sidebar {
   width: 100%;
+  min-height: 100vh;
   height: 100%;
   background-color: #070a52;
   padding: 1rem;
@@ -129,6 +132,38 @@
 
 /* - - - - - - Dashboard styling - - - - - -  */
 
+.dashboard-data-container {
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 1rem;
+}
+
+/* cards in dashboard */
+
+.card--container {
+  width: 100%;
+  height: 150px;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease-in;
+  border: 1px solid rgba(186, 186, 186, 0.5);
+}
+
+/* tables in dashboard */
+
+.table--container p {
+  font-size: 15px;
+  font-weight: 600;
+  color: #727272;
+}
+
+.card--container:hover {
+  transform: scale(101%);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 /* < - - - - - Foooter styling - - - - -> */
 
 .footer {
@@ -162,6 +197,11 @@
 .profile-btn--text h6 {
   font-size: 0.8rem;
   margin: 0;
+  text-transform: capitalize;
+}
+
+.profile-btn--text p {
+  text-transform: capitalize;
 }
 
 .profile-btn--text p {
@@ -304,8 +344,6 @@ p {
 .login--btn:hover {
   background-color: #070a52;
 }
-
-
 
 /* - - - - - - - Form Builder - - - - - -  */
 

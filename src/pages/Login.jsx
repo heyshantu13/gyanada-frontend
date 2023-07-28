@@ -31,7 +31,7 @@ const Login = () => {
           dispatch(setToken(data.data.token));
           if (data.data.role === "admin") {
             notify(`✅ ${data.message}`);
-            setTimeout(() => navigate("/"), 4000);
+            setTimeout(() => navigate("/admin/dashboard"), 4000);
           }
         }
       } catch (error) {

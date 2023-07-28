@@ -8,14 +8,13 @@ const MyForms = () => {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/admin/dashboard">Dashboard</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               My Forms
             </li>
           </ol>
         </nav>
-        <h2>My Forms</h2>
         <Link to="/admin/create/form" className="btn btn-dark">
           Edit Form
         </Link>
