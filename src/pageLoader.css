@@ -1,0 +1,12 @@
+/* PageLoader.css */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #8A2BE2;
+    z-index: 9999;
+    transition: width 0.3s ease;
+  }
+  

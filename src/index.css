@@ -36,6 +36,11 @@ li {
   color: white !important;
 }
 
+.table {
+  font-size: 13px;
+}
+
+
 /* utility classes */
 
 .base--container {

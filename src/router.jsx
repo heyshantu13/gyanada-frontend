@@ -39,4 +39,8 @@ export const router = createBrowserRouter([
     path: "/", // Move the "/" route outside the "/admin" route
     element: <Login />,
   },
+  {
+    path: "*",
+    element: <h1>404 Page not found</h1>
+  }
 ]);
