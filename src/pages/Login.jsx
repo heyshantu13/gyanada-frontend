@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { notifySuccess, notifyError } from "../components/ToastMessage";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setToken } from "../redux/userSlice";
 import { validateField } from '../utils/validationUtils';
