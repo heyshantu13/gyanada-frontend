@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { userRequest } from "../http/axiosInterceptors";
+import { userMultipartRequest  } from "../http/axiosInterceptors";
 
 const AddAgent = ({ setIsModalActive }) => {
   const [agentDetails, setAgentDetails] = useState({
@@ -31,12 +31,7 @@ const AddAgent = ({ setIsModalActive }) => {
       console.log(formData)
 
       // Post
-      const response = await userRequest.post("/user/agent/create", {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        formData,
-      });
+         const response = await userRequest.post("/user/agent/create", userMultipartRequest);
       console.log(response);
     } catch (error) {
       console.error(error);
