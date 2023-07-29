@@ -47,7 +47,7 @@ const AddAgent = ({ setIsModalActive }) => {
     <div className="add-agent-modal">
       <form>
         <div className="input">
-          <label>Name <span className="text-danger">*</span></label>
+          <label>Name</label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, fullname: e.target.value })
@@ -57,7 +57,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Email <span className="text-danger">*</span></label>
+          <label>Email</label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, email: e.target.value })
@@ -67,7 +67,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Password <span className="text-danger">*</span></label>
+          <label>Password</label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, password: e.target.value })
@@ -77,7 +77,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Phone <span className="text-danger">*</span></label>
+          <label>Phone</label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, mobile: e.target.value })
@@ -87,7 +87,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Photo <span className="text-danger">*</span></label>
+          <label>Photo</label>
           <input
             onChange={handleFileChange}
             type="file"
@@ -96,7 +96,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Date of Birth <span className="text-danger">*</span></label>
+          <label>Date of Birth</label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, dateOfBirth: e.target.value })
@@ -106,7 +106,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Address <span className="text-danger">*</span></label>
+          <label>Address</label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, address: e.target.value })
