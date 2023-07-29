@@ -1,6 +1,13 @@
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { logOut } from "../redux/userSlice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
+
   return (
     <div className="sidebar">
       <div className="brand--name">
@@ -16,13 +23,13 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/admin/forms" activeClassName="active">
+          <NavLink to="/admin/students" activeClassName="active">
             <i className="fas fa-user-graduate icon"></i>
             <p>Students Manager</p>
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/admin/forms" activeClassName="active">
+          <NavLink to="/admin/agents" activeClassName="active">
             <i className="fas fa-user-tie icon"></i>
             <p>Agents Manager</p>
           </NavLink>
@@ -34,19 +41,19 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/admin/agents" activeClassName="active">
+          <NavLink to="/admin/events" activeClassName="active">
             <i className="fas fa-bell icon"></i>
             <p>Notifications & Events</p>
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/admin/agents" activeClassName="active">
+          <NavLink to="/admin/profile" activeClassName="active">
             <i className="fas fa-user icon"></i>
             <p>My Profile</p>
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/admin/agents" activeClassName="active">
+          <NavLink onClick={handleLogout} to="/" activeClassName="active">
             <i className="fas fa-sign-out-alt icon"></i>
             <p>Logout</p>
           </NavLink>

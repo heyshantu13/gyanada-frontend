@@ -40,14 +40,23 @@ li {
   font-size: 13px;
 }
 
-
 /* utility classes */
+
+.relative {
+  position: relative;
+}
 
 .base--container {
   width: 100%;
   min-height: 100vh;
   height: 100%;
   padding: 1rem;
+}
+
+.secondary--title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
 }
 
 .hidden {
@@ -66,8 +75,31 @@ li {
   align-items: center;
 }
 
-.borderDiv {
-  border: 1px solid red !important;
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-bottom: 1rem;
+}
+
+.input label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.input input {
+  outline: none;
+  border: 1px solid #bababa;
+  background: transparent;
+  padding: 8px;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  font-size: 13px;
+}
+
+.input input:focus {
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  border: 1px solid transparent;
 }
 
 /* Formio classes */

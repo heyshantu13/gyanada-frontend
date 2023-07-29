@@ -6,7 +6,7 @@ export const studentData = [
     phone: "123-456-7890",
     age: 20,
     course: "Computer Science",
-    dob: "2003-05-15", // Date of Birth in YYYY-MM-DD format
+    dob: "2003-07-29", // Date of Birth in YYYY-MM-DD format
     college: "ABC University",
   },
   {
@@ -58,5 +58,43 @@ export const studentData = [
     course: "Psychology",
     dob: "2003-09-08", // Date of Birth in YYYY-MM-DD format
     college: "JKL College",
+  },
+];
+
+export const agentsData = [
+  {
+    id: 1,
+    name: "Vikram Malhotra",
+    email: "vikram.malhotra@example.com",
+    phone: "9876543210",
+    address: "123, Main Street, Mumbai",
+  },
+  {
+    id: 2,
+    name: "Priya Desai",
+    email: "priya.desai@example.com",
+    phone: "8765432109",
+    address: "456, Park Avenue, Delhi",
+  },
+  {
+    id: 3,
+    name: "Siddharth Kapoor",
+    email: "siddharth.kapoor@example.com",
+    phone: "7654321098",
+    address: "789, MG Road, Bangalore",
+  },
+  {
+    id: 4,
+    name: "Ishita Chatterjee",
+    email: "ishita.chatterjee@example.com",
+    phone: "6543210987",
+    address: "567, Banjara Hills, Hyderabad",
+  },
+  {
+    id: 5,
+    name: "Rajiv Patel",
+    email: "rajiv.patel@example.com",
+    phone: "5432109876",
+    address: "901, Park Street, Kolkata",
   },
 ];
