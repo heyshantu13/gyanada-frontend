@@ -12,29 +12,34 @@ const AddAgent = ({ setIsModalActive }) => {
     address: "",
     photo: null,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAgentDetails({ ...agentDetails, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setAgentDetails({ ...agentDetails, photo: file });
+  };
 
   const handleSave = async (e) => {
     e.preventDefault();
-    // console.log(agentDetails);
+    setIsSubmitting(true);
+
     try {
-      const { fullname, email, password, mobile, dateOfBirth, address, photo } =
-        agentDetails;
       const formData = new FormData();
-      formData.append("fullname", fullname);
-      formData.append("email", email);
-      formData.append("password", password);
-      formData.append("mobile", mobile);
-      formData.append("dateOfBirth", dateOfBirth);
-      formData.append("address", address);
-      formData.append("photo", photo);
-
-      console.log(formData)
-
-      // Post
-         const response = await userRequest.post("/user/agent/create", userMultipartRequest);
+      for (const key in agentDetails) {
+        formData.append(key, agentDetails[key]);
+      }
+      const response = await userMultipartRequest.post("/user/agent/create", formData);
       console.log(response);
+     
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -43,17 +48,11 @@ const AddAgent = ({ setIsModalActive }) => {
     setIsModalActive(false);
   };
 
-  // Handle file change event
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setAgentDetails({ ...agentDetails, photo: file });
-  };
-
   return (
     <div className="add-agent-modal">
       <form>
         <div className="input">
-          <label>Name</label>
+          <label>Name <span className="text-danger">*</span></label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, fullname: e.target.value })
@@ -63,7 +62,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Email</label>
+          <label>Email <span className="text-danger">*</span></label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, email: e.target.value })
@@ -73,7 +72,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Password</label>
+          <label>Password <span className="text-danger">*</span></label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, password: e.target.value })
@@ -83,7 +82,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Phone</label>
+          <label>Phone <span className="text-danger">*</span></label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, mobile: e.target.value })
@@ -93,7 +92,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Photo</label>
+          <label>Photo <span className="text-danger">*</span></label>
           <input
             onChange={handleFileChange}
             type="file"
@@ -102,7 +101,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Date of Birth</label>
+          <label>Date of Birth <span className="text-danger">*</span></label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, dateOfBirth: e.target.value })
@@ -112,7 +111,7 @@ const AddAgent = ({ setIsModalActive }) => {
           />
         </div>
         <div className="input">
-          <label>Address</label>
+          <label>Address <span className="text-danger">*</span></label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, address: e.target.value })
