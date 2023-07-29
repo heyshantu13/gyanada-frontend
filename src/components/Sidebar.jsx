@@ -1,7 +1,4 @@
 import { NavLink } from "react-router-dom";
-import dashboardIcon from "../assets/icons/dashboard.svg";
-import formsIcon from "../assets/icons/forms.svg";
-import agentsIcon from "../assets/icons/agents.svg";
 
 const Sidebar = () => {
   return (
@@ -14,20 +11,44 @@ const Sidebar = () => {
       <ul className="nav--list">
         <li className="nav--item">
           <NavLink to="/admin/dashboard" activeClassName="active">
-            <img src={dashboardIcon} alt="dashboard icon" />
+            <i className="fas fa-chart-bar icon"></i>
             <p>Dashboard</p>
           </NavLink>
         </li>
         <li className="nav--item">
           <NavLink to="/admin/forms" activeClassName="active">
-            <img src={formsIcon} alt="forms icon" />
-            <p>My Forms</p>
+            <i className="fas fa-user-graduate icon"></i>
+            <p>Students Manager</p>
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink to="/admin/forms" activeClassName="active">
+            <i className="fas fa-user-tie icon"></i>
+            <p>Agents Manager</p>
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink to="/admin/forms" activeClassName="active">
+            <i className="fas fa-clipboard-list icon"></i>
+            <p>Form Manager</p>
           </NavLink>
         </li>
         <li className="nav--item">
           <NavLink to="/admin/agents" activeClassName="active">
-            <img src={agentsIcon} alt="agents icon" />
-            <p>Agents</p>
+            <i className="fas fa-bell icon"></i>
+            <p>Notifications & Events</p>
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink to="/admin/agents" activeClassName="active">
+            <i className="fas fa-user icon"></i>
+            <p>My Profile</p>
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink to="/admin/agents" activeClassName="active">
+            <i className="fas fa-sign-out-alt icon"></i>
+            <p>Logout</p>
           </NavLink>
         </li>
       </ul>
