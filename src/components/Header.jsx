@@ -46,7 +46,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <h4>Admin</h4>
+      <h4>{""}</h4>
       {/*  */}
       <div className="profile--btn--container">
         <button onClick={handleProfileBtn} className="profile--btn">
