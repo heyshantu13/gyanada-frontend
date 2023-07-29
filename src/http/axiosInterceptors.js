@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { showPageLoader, hidePageLoader } from '../redux/loaderSlice';
 
-const customAxios = axios.create();
+export const customAxios = axios.create();
 const userToken = localStorage.getItem('token') || null
 
 let activeRequests = 0;
@@ -60,5 +60,4 @@ export const userRequest = customAxios.create({
   baseURL: "http://localhost:8081/api/web",
   headers: { Authorization: `${userToken}` },
 });
-
 // export default customAxios;

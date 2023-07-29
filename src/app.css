@@ -420,3 +420,9 @@ p {
   border-radius: 0.5rem;
 }
 
+
+.icon {
+  font-size: 24px; /* Change the size to your desired value */
+  color: #ffffff; /* Change the color to white */
+  /* Add any other styles you want for the icons */
+}
