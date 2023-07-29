@@ -5,6 +5,7 @@ import { showPageLoader, hidePageLoader } from '../redux/loaderSlice';
 
 export const customAxios = axios.create();
 const userToken = localStorage.getItem('token') || null
+console.log(userToken)
 
 let activeRequests = 0;
 
