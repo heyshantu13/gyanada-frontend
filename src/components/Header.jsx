@@ -3,46 +3,49 @@ import { FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../redux/userSlice";
-import axios from "axios";
+import { userRequest } from "../http/axiosInterceptors";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+  const [userData, setUserData] = useState(null); // Initialize userData as null
 
   const handleProfileBtn = () => {
     setIsActive((prev) => !prev);
   };
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-  const handleLogOut = () => {
+
+  const handleLogout = () => {
+    // Clear local storage
+    localStorage.clear();
     dispatch(logOut());
-    navigate("/");
+    setIsLoggedOut(true);
   };
 
-  const [userData, setUserData] = useState();
+  // Perform redirect with replace behavior on logout
+  useEffect(() => {
+    if (isLoggedOut) {
+      // Redirect to the home page ("/") with replace behavior
+      navigate("/", { replace: true });
+    }
+  }, [isLoggedOut, navigate]);
+
   const token = useSelector((state) => state.user.token);
 
+  // Fetch user data from the API and update the state
   useEffect(() => {
-    const getUserData = async () => {
+    const fetchUserData = async () => {
       try {
-        const data = await axios.get(
-          "http://localhost:8081/api/web/my-profile",
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
-        setUserData(data.data.data);
+        const response = await userRequest.get("/my-profile");
+        setUserData(response.data.data);
       } catch (error) {
         console.log(error);
       }
     };
-    getUserData();
+    fetchUserData();
   }, []);
-
-  console.log(userData)
 
   return (
     <header className="header">
@@ -61,7 +64,7 @@ const Header = () => {
             <Link className="expanded--actions" to="profile">
               Profile
             </Link>
-            <button onClick={handleLogOut} className="expanded--actions">
+            <button onClick={handleLogout} className="expanded--actions">
               Log out
             </button>
           </div>

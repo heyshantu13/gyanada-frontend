@@ -60,5 +60,4 @@ export const userRequest = customAxios.create({
   baseURL: "http://localhost:8081/api/web",
   headers: { Authorization: `${userToken}` },
 });
-
 // export default customAxios;
