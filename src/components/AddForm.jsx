@@ -4,30 +4,50 @@ import { formIoData } from "../assets/FormIoData";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { saveForm } from "../redux/formSlice";
+import { Link } from "react-router-dom";
 
 const AddForm = () => {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState(
+    formIoData
+  );
   // console.log(formData.components);
 
-  const dispatch = useDispatch();
-  const formDataInStore = useSelector((state) => state.forms);
-  console.log(formDataInStore);
+
 
   const handleSave = () => {
+    console.log(formData)
     // console.log(formData.components);
-    dispatch(saveForm(formDataInStore));
+    //dispatch(saveForm(formDataInStore));
   };
 
   return (
     <div className="base--container">
-      <div className="form--builder--header">
-        <h3>Create Form</h3>
-        <button onClick={handleSave} className="btn btn-primary">
-          Save
-        </button>
-      </div>
+  
+  <header className="wrapper" style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/admin/dashboard">Dashboard</Link>
+          </li>
+          <li className="breadcrumb-item " aria-current="page">
+           Form Manager
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+           Edit Form
+          </li>
+        </ol>
+      </nav>
+      <button onClick={handleSave} className="btn btn-primary">
+        {
+          "Save Form"
+        }
+      </button>
+    </header>
+    {/* start page */}
+    <div className="row">
+          <div className="col bg-light p-4 rounded mt-4">
       <FormBuilder
-        form={formDataInStore}
+        form={formData}
         onChange={(schema) => setFormData(schema)}
         options={{
           builder: {
@@ -41,6 +61,9 @@ const AddForm = () => {
           premium: true, // Enable premium mode
         }}
       />
+      </div>
+      </div>
+      {/* End Page */}
     </div>
   );
 };
