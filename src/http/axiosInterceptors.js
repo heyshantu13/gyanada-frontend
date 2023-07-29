@@ -61,4 +61,10 @@ export const userRequest = customAxios.create({
   baseURL: "http://localhost:8081/api/web",
   headers: { Authorization: `${userToken}` },
 });
+export const userMultipartRequest = customAxios.create({
+  baseURL: "http://localhost:8081/api/web",
+  headers: { Authorization: `${userToken}` ,
+             "content-type": "multipart/form-data",
+          },
+});
 // export default customAxios;
