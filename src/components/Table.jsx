@@ -1,37 +1,50 @@
-import Table from "react-bootstrap/Table";
+import { useTable, useSortBy, useFilters } from 'react-table';
+import { useMemo } from 'react';
+import Table from 'react-bootstrap/Table';
 
-function StripedRowExample({ data, type }) {
-    
+function StripedTable({ columns,data }) {
+  const columnsData = useMemo(
+    () => columns,
+  );
+
+  // Create a table instance
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state,
+  } = useTable({ columns, data }, useFilters, useSortBy);
+
   return (
-    <Table striped>
+    <Table striped hover {...getTableProps()}>
       <thead>
-        <tr>
-          <th>Sr. No</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          {/* <th>Age</th> */}
-          {/* <th>DOB</th> */}
-          <th>Course</th>
-          {/* <th>College</th> */}
-        </tr>
-      </thead>
-      <tbody>
-        {data?.map((student) => (
-          <tr key={student.phone}>
-            <td>{student.id}</td>
-            <td>{student.name}</td>
-            <td>{student.email}</td>
-            <td>{student.phone}</td>
-            {/* <td>{student.age}</td> */}
-            {/* <td>{student.dob}</td> */}
-            <td>{student.course}</td>
-            {/* <td>{student.college}</td> */}
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {column.render('Header')}
+                {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+              </th>
+            ))}
           </tr>
         ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => {
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+              })}
+            </tr>
+          );
+        })}
       </tbody>
     </Table>
   );
 }
 
-export default StripedRowExample;
+export default StripedTable;

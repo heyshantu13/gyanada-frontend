@@ -13,6 +13,7 @@ const userSlice = createSlice({
     },
     logOut: (state) => {
       state.token = null;
+      localStorage.clear();
     },
     // Add other reducer functions here if needed
   },

@@ -7,6 +7,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 // import Footer from "./components/Footer";
 import { useSelector } from "react-redux";
+import PageLoader from "./components/PageLoader";
 
 const App = () => {
   const [isActive, setIsActive] = useState(true);
@@ -16,9 +17,9 @@ const App = () => {
 
   useEffect(() => {
     if (!data) {
-      navigate("/login");
+      navigate("/");
     }
-  }, [data]);
+  }, [navigate]);
 
   const handleMenu = () => {
     setIsActive((prev) => !prev);
@@ -28,6 +29,7 @@ const App = () => {
   return (
     <>
       <div className="app">
+        <PageLoader/>
         <aside className={`sidebar--container ${isActive ? "" : "hidden"}`}>
           <Sidebar />
         </aside>

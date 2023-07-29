@@ -358,3 +358,61 @@ p {
 .sidebar .nav--list .nav--item.active {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* Add these styles to your CSS file */
+
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.dashboard-data-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card--container {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card--container .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+
+
+.card--container h5 {
+  margin-bottom: 0.5rem;
+}
+
+.card-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+.table--container {
+  margin-top: 2rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.recently-joined-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.recently-joined-table {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
