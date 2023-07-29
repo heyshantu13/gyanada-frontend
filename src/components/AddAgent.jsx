@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { userMultipartRequest  } from "../http/axiosInterceptors";
+import { userMultipartRequest, userRequest } from "../http/axiosInterceptors";
 
 const AddAgent = ({ setIsModalActive }) => {
   const [agentDetails, setAgentDetails] = useState({
@@ -28,10 +28,13 @@ const AddAgent = ({ setIsModalActive }) => {
       formData.append("address", address);
       formData.append("photo", photo);
 
-      console.log(formData)
+      console.log(formData);
 
       // Post
-         const response = await userRequest.post("/user/agent/create", userMultipartRequest);
+      const response = await userRequest.post(
+        "/user/agent/create",
+        userMultipartRequest
+      );
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -53,13 +56,13 @@ const AddAgent = ({ setIsModalActive }) => {
     <div className="add-agent-modal">
       <form>
         <div className="input">
-          <label>Name</label>
+          <label>Fullname</label>
           <input
             onChange={(e) =>
               setAgentDetails({ ...agentDetails, fullname: e.target.value })
             }
             type="text"
-            placeholder="Name"
+            placeholder="Fullname"
           />
         </div>
         <div className="input">
