@@ -47,6 +47,7 @@ const Login = () => {
         setTimeout(() => navigate("/admin/dashboard"), 1200);
       }
     } catch (error) {
+      console.log(error);
       notifyError("You have entered an invalid email or password");
       console.warn(error);
     }
