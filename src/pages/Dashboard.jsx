@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { studentData } from "../assets/TableData";
 import StripedTable from "../components/Table";
 import { useEffect, useState } from "react";
-import Modal from "react-modal"; 
+import Modal from "react-modal";
 import { userRequest } from "../http/axiosInterceptors";
 
 const Dashboard = () => {
-  const totalStudents = 100; 
-  const totalAgents = 50; 
-  const birthdaysToday = 5; 
+  const totalStudents = 100;
+  const totalAgents = 50;
+  const birthdaysToday = 5;
   const [showTable, setShowTable] = useState(false);
-  const [dashboard, setDashboard] = useState(null)
+  const [dashboard, setDashboard] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getDashboard = async () => {
@@ -32,36 +34,43 @@ const Dashboard = () => {
       <div className="base--container relative">
         {/* Breadcrumb */}
         <div className="wrapper">
-        <div>
-          <h4>Dashboard</h4>
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <Link to="/admin/dashboard">Dashboard</Link>
-              </li>
-            </ol>
-          </nav>
-        </div>
-        {/* <button onClick={() => setIsModalActive(true)} className="btn btn-dark">
+          <div>
+            <h4>Dashboard</h4>
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <Link to="/admin/dashboard">Dashboard</Link>
+                </li>
+              </ol>
+            </nav>
+          </div>
+          {/* <button onClick={() => setIsModalActive(true)} className="btn btn-dark">
           Add Agent
         </button> */}
         </div>
-         {/* Breadcrumb */}
+        {/* Breadcrumb */}
         <div className="row">
           <div className="col bg-light p-4 rounded mt-4">
             {/* Min Content Start*/}
             <div className="dashboard-data-container">
-              <div className="card--container">
+              <div
+                onClick={() => navigate("/admin/students")}
+                className="card--container"
+              >
                 <i className="fas fa-user-graduate icon"></i>
                 <h5>Total Students</h5>
                 <p className="card-count">{dashboard?.totalStudents || 0}</p>
               </div>
-              <div className="card--container">
+              <div
+                onClick={() => navigate("/admin/agents")}
+                className="card--container"
+              >
                 <i className="fas fa-user-tie icon"></i>
                 <h5>Total Agents</h5>
                 <p className="card-count">{dashboard?.totalAgents || 0}</p>
               </div>
               <div
+                onClick={() => navigate("/admin/events")}
                 className="card--container birthdays-today-container"
                 onMouseEnter={() => setShowTable(true)}
                 onMouseLeave={() => setShowTable(false)}
@@ -76,10 +85,10 @@ const Dashboard = () => {
               <div className="recently-joined-table">
                 <StripedTable
                   columns={[
-                    { Header: 'Sr. No', accessor: 'id' },
-                    { Header: 'Name', accessor: 'name' },
-                    { Header: 'Email', accessor: 'email' },
-                    { Header: 'Phone', accessor: 'phone' },
+                    { Header: "Sr. No", accessor: "id" },
+                    { Header: "Name", accessor: "name" },
+                    { Header: "Email", accessor: "email" },
+                    { Header: "Phone", accessor: "phone" },
                   ]}
                   data={dashboard?.recentlyJoined || []}
                 />
@@ -101,11 +110,11 @@ const Dashboard = () => {
         <div className="birthday-table">
           <StripedTable
             columns={[
-              { Header: 'Sr. No', accessor: 'id' },
-              { Header: 'Name', accessor: 'name' },
-              { Header: 'Email', accessor: 'email' },
-              { Header: 'Phone', accessor: 'phone' },
-              { Header: 'Course', accessor: 'course' },
+              { Header: "Sr. No", accessor: "id" },
+              { Header: "Name", accessor: "name" },
+              { Header: "Email", accessor: "email" },
+              { Header: "Phone", accessor: "phone" },
+              { Header: "Course", accessor: "course" },
             ]}
             data={studentData}
           />

@@ -77,6 +77,23 @@
   text-align: center;
 }
 
+.confirm--logout {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  z-index: 99999;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.confirm--logout div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .brand--name h1 {
   font-size: 1.4rem;
   font-weight: 700;
@@ -219,9 +236,9 @@
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  padding: 1rem;
+  padding: 10px;
   background: white;
-  border-radius: 1rem;
+  border-radius: 10px;
   width: fit-content;
   transition: all 0.3s ease-in;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -234,6 +251,7 @@
   outline: none;
   color: gray;
   background: transparent;
+  margin: 0;
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
 }
@@ -529,6 +547,8 @@ p {
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
   overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .form--actions {
@@ -545,8 +565,9 @@ p {
   display: block;
   margin: 0;
   position: absolute;
-  right: 26%;
-  top: 1rem;
+  top: -10px;
+  right: -10px;
+  z-index: 99999;
   border-radius: 50% !important;
 }
 

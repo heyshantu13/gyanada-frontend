@@ -42,7 +42,7 @@ const Sidebar = () => {
             <i className="fas fa-user-graduate icon"></i>
             <p>Students Manager</p>
           </NavLink>
-        </li>      
+        </li>
         <li className="nav--item">
           <NavLink to="/admin/events" activeClassName="active">
             <i className="fas fa-bell icon"></i>
@@ -56,10 +56,10 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink onClick={handleLogout} to="/" activeClassName="active">
+          <a onClick={handleLogout} to="/" activeClassName="active">
             <i className="fas fa-sign-out-alt icon"></i>
             <p>Logout</p>
-          </NavLink>
+          </a>
         </li>
       </ul>
     </div>

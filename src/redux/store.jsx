@@ -1,7 +1,6 @@
 // store.js
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
-import formReducer from "./formSlice";
 import loaderReducer from "./loaderSlice"
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -14,7 +13,6 @@ const persistConfig = {
 
 const reducers = combineReducers({
   user: userReducer,
-  forms: formReducer,
   loader:loaderReducer,
 });
 

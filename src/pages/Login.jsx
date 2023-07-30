@@ -58,7 +58,7 @@ const Login = () => {
       <div className="login--container d-flex justify-content-center align-items-center">
         <div className="login--wrapper">
           <div className="login--header text-center">
-            <h2 className="mb-4">Gyanada Insitution System</h2>
+            <h2 className="mb-2">Gyanada Insitution System</h2>
             <p className="text-muted">V1.0.0 </p>
           </div>
           <form className="login--form">

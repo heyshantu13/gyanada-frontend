@@ -40,6 +40,10 @@ li {
   font-size: 13px;
 }
 
+a {
+  cursor: pointer;
+}
+
 /* utility classes */
 
 .relative {

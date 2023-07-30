@@ -28,9 +28,11 @@ const AddAgent = ({ setIsModalActive }) => {
       for (const key in agentDetails) {
         formData.append(key, agentDetails[key]);
       }
-      const response = await userMultipartRequest.post("/user/agent/create", formData);
+      const response = await userMultipartRequest.post(
+        "/user/agent/create",
+        formData
+      );
       console.log(response);
-     
     } catch (error) {
       console.error(error);
     } finally {
@@ -45,7 +47,7 @@ const AddAgent = ({ setIsModalActive }) => {
 
   return (
     <div className="add-agent-modal">
-      <form>
+      <form className="add-agent-form">
         <div className="input">
           <label>Name</label>
           <input
@@ -115,10 +117,10 @@ const AddAgent = ({ setIsModalActive }) => {
             placeholder="Civil Line, Gondia"
           />
         </div>
-        <div className="form--actions">
+        <div  className="form--actions">
           <button
             onClick={(e) => handleCancel(e)}
-            className="btn btn-outline-secondary"
+            className="btn btn-danger"
           >
             Cancel
           </button>
@@ -127,12 +129,6 @@ const AddAgent = ({ setIsModalActive }) => {
           </button>
         </div>
       </form>
-      <button
-        onClick={(e) => handleCancel(e)}
-        className="btn btn-danger close-modal"
-      >
-        <IoCloseSharp />
-      </button>
     </div>
   );
 };
