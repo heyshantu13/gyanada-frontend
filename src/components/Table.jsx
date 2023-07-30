@@ -1,6 +1,7 @@
 import { useTable, useSortBy, useFilters } from 'react-table';
 import { useMemo, useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import { getImage } from '../utils/getImage';
 
 function StripedTable({ columns,data }) {
 
@@ -38,38 +39,71 @@ function StripedTable({ columns,data }) {
   return (
     <div className="base--container">
       
-    <Table striped hover {...getTableProps()}>
+      <Table striped hover {...getTableProps()}>
       <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
-                </th>
-              ))}
-              {/* Actions Header */}
-              <th>Actions</th>
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {column.render('Header')}
+                {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+              </th>
+            ))}
+            {/* Actions Header */}
+            <th>Actions</th>
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+      {rows.length === 0 && 
+    <tr>
+      <td colSpan={columns.length + 1} className="text-center">
+        <h4 className="text-dark">No records found</h4>
+      </td>
+    </tr>
+}
+{rows.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
-                  return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                  if (cell.column.Header === 'Photo') {
+                    // Render the photo as an image
+                    return (
+                      <td {...cell.getCellProps()}>
+                        <img
+                          src={getImage(cell.value)}
+                          alt={cell.value}
+                          style={{
+                            maxWidth: '100px',
+                            borderRadius: '5%',
+                          }}
+                        />
+                      </td>
+                    );
+                  }
+                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
                 })}
                 {/* Actions Cell */}
                 <td>
-                  <button className="btn btn-sm btn-primary" onClick={() => handleView(row.original)}>View</button>
-                  <button className="btn btn-sm btn-secondary" onClick={() => handleEdit(row.original)}>Edit</button>
+                  {/* Use Font Awesome icons for "Edit" and "View" buttons */}
+                  <button
+                    className="btn btn-sm btn-primary"
+                    onClick={() => handleView(row.original)}
+                  >
+                    <i className="fas fa-eye"></i> {/* Eye icon */}
+                  </button>
+                  <button
+                    className="btn btn-sm btn-secondary"
+                    onClick={() => handleEdit(row.original)}
+                  >
+                    <i className="fas fa-edit"></i> {/* Pencil icon */}
+                  </button>
                 </td>
               </tr>
             );
           })}
-        </tbody>
+      </tbody>
     </Table>
     </div>
   );

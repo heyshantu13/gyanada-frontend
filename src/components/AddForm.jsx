@@ -1,19 +1,47 @@
 import { FormBuilder } from "@formio/react";
 import { useState } from "react";
-import { formIoData } from "../assets/FormIoData";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { userRequest } from "../http/axiosInterceptors";
 import { notifySuccess } from "./ToastMessage";
+import { useEffect } from "react";
 
 const AddForm = () => {
-  const [formData, setFormData] = useState(formIoData);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    "display": "form",
+    "components": []
+  });
+
+  useEffect(() => {
+    const getFormData = async () => {
+      try {
+        const response = await userRequest.get("/form/get");
+        setFormData((previousValue) => ({
+          ...previousValue,
+          components: response?.data?.data?.components || []
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFormData();
+  }, []);
+
+  const { display, components } = formData;
   // console.log(formData.components);
 
   const handleSave = async () => {
     try {
-      const response = await userRequest.put("/form/update", formData);
-      notifySuccess(response.data.message);
+      const isConfirmed = window.confirm('Are you sure you want to save the form?');
+      if (isConfirmed) {
+        const response = await userRequest.put("/form/update", formData);
+        notifySuccess(response.data.message);
+        setTimeout(() => {
+            navigate("/admin/forms")
+        }, 1200);
+      }
+    
     } catch (error) {
       console.log(error.message);
     }
@@ -46,7 +74,7 @@ const AddForm = () => {
       <div className="row">
         <div className="col bg-light p-4 rounded mt-4">
           <FormBuilder
-            form={formData}
+           form={{ display, components }}
             onChange={(schema) => setFormData(schema)}
             options={{
               builder: {
