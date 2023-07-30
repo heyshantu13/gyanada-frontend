@@ -8,7 +8,8 @@ import { userRequest } from "../http/axiosInterceptors";
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
   const [isLoggedOut, setIsLoggedOut] = useState(false);
-  const [userData, setUserData] = useState(null); // Initialize userData as null
+  const [userData, setUserData] = useState(null);
+  const [greeting, setGreeting] = useState('');
 
   const handleProfileBtn = () => {
     setIsActive((prev) => !prev);
@@ -46,10 +47,20 @@ const Header = () => {
     };
     fetchUserData();
   }, []);
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 0 && currentHour < 12) {
+      setGreeting('Good Morning');
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting('Good Afternoon');
+    } else {
+      setGreeting('Good Evening');
+    }
+  }, []);
 
   return (
     <header className="header">
-      <h4>{""}</h4>
+      <h4>{greeting}</h4>
       {/*  */}
       <div className="profile--btn--container">
         <button onClick={handleProfileBtn} className="profile--btn">

@@ -8,7 +8,7 @@ const userToken = localStorage.getItem('token') || null
 
 let activeRequests = 0;
 
-const showLoader = () => {
+ const showLoader = () => {
   if (activeRequests === 0) {
     setTimeout(() => {
       if (activeRequests > 0) {
@@ -31,27 +31,6 @@ const hideLoader = () => {
 };
 
 
-customAxios.interceptors.request.use(
-  (config) => {
-    showLoader();
-    return config;
-  },
-  (error) => {
-    hideLoader();
-    return Promise.reject(error);
-  }
-);
-
-customAxios.interceptors.response.use(
-  (response) => {
-    hideLoader();
-    return response;
-  },
-  (error) => {
-    hideLoader();
-    return Promise.reject(error);
-  }
-);
 
 export const publicRequest = customAxios.create({
   baseURL: "http://localhost:8081/api/web",
@@ -66,4 +45,76 @@ export const userMultipartRequest = customAxios.create({
              "content-type": "multipart/form-data",
           },
 });
-// export default customAxios;
+
+
+// Request Interceptor
+publicRequest.interceptors.request.use(
+  (config) => {
+    showLoader();
+    return config;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+// Response Interceptor
+publicRequest.interceptors.response.use(
+  (response) => {
+    hideLoader();
+    return response;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+// Request Interceptor
+userRequest.interceptors.request.use(
+  (config) => {
+    showLoader();
+    return config;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+// Response Interceptor
+userRequest.interceptors.response.use(
+  (response) => {
+    hideLoader();
+    return response;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+// Request Interceptor
+userMultipartRequest.interceptors.request.use(
+  (config) => {
+    showLoader();
+    return config;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+// Response Interceptor
+userMultipartRequest.interceptors.response.use(
+  (response) => {
+    hideLoader();
+    return response;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);

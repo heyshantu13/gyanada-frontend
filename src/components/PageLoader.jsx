@@ -4,8 +4,12 @@ import { useSelector } from "react-redux";
 import '../pageLoader.css';
 
 const PageLoader = () => {
-    const isLoading = useSelector((state) => state.loader.loading);
-  return isLoading && <div className="page-loader" />;
+  const isLoading = useSelector((state) => state.loader.loading);
+
+  return (
+    <>
+    </>
+  );
 };
 
 export default PageLoader;

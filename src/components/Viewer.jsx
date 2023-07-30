@@ -3,12 +3,18 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../http/axiosInterceptors";
 
 const Viewer = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    "display": "form",
+    "components": []
+  });
   useEffect(() => {
     const getFormData = async () => {
       try {
         const response = await userRequest.get("/form/get");
-        setFormData(response.data.data);
+        setFormData((previousValue) => ({
+          ...previousValue,
+          components: response?.data?.data?.components || []
+        }));
       } catch (error) {
         console.log(error);
       }

@@ -1,32 +1,52 @@
 import { Link } from "react-router-dom";
 import { studentData } from "../assets/TableData";
 import StripedTable from "../components/Table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal"; 
+import { userRequest } from "../http/axiosInterceptors";
 
 const Dashboard = () => {
   const totalStudents = 100; 
   const totalAgents = 50; 
   const birthdaysToday = 5; 
   const [showTable, setShowTable] = useState(false);
+  const [dashboard, setDashboard] = useState(null)
+
+  useEffect(() => {
+    const getDashboard = async () => {
+      try {
+        const response = await userRequest.get("/dashboard");
+        const { data } = response;
+        setDashboard(data.data);
+      } catch (error) {
+        console.log("Error fetching dashboard data:", error);
+      }
+    };
+
+    getDashboard();
+  }, []);
 
   return (
     <>
       {/* Main Page Started */}
-      <div className="base--container">
+      <div className="base--container relative">
         {/* Breadcrumb */}
-        <header className="wrapper">
+        <div className="wrapper">
+        <div>
+          <h4>Dashboard</h4>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link to="/admin/dashboard">Dashboard</Link>
               </li>
-              {/* <li className="breadcrumb-item active" aria-current="page">
-                My Forms
-              </li> */}
             </ol>
           </nav>
-        </header>
+        </div>
+        {/* <button onClick={() => setIsModalActive(true)} className="btn btn-dark">
+          Add Agent
+        </button> */}
+        </div>
+         {/* Breadcrumb */}
         <div className="row">
           <div className="col bg-light p-4 rounded mt-4">
             {/* Min Content Start*/}
@@ -34,12 +54,12 @@ const Dashboard = () => {
               <div className="card--container">
                 <i className="fas fa-user-graduate icon"></i>
                 <h5>Total Students</h5>
-                <p className="card-count">{totalStudents}</p>
+                <p className="card-count">{dashboard?.totalStudents || 0}</p>
               </div>
               <div className="card--container">
                 <i className="fas fa-user-tie icon"></i>
                 <h5>Total Agents</h5>
-                <p className="card-count">{totalAgents}</p>
+                <p className="card-count">{dashboard?.totalAgents || 0}</p>
               </div>
               <div
                 className="card--container birthdays-today-container"
@@ -48,11 +68,11 @@ const Dashboard = () => {
               >
                 <i className="fas fa-birthday-cake icon"></i>
                 <h5>Something Cool for Today</h5>
-                <p className="card-count">{birthdaysToday}</p>
+                <p className="card-count">{dashboard?.totalEvents || 0}</p>
               </div>
             </div>
             <div className="table--container">
-              <p className="recently-joined-title">Recently Joined Students</p>
+              <p className="recently-joined-title">Recent Students Data</p>
               <div className="recently-joined-table">
                 <StripedTable
                   columns={[
@@ -60,9 +80,8 @@ const Dashboard = () => {
                     { Header: 'Name', accessor: 'name' },
                     { Header: 'Email', accessor: 'email' },
                     { Header: 'Phone', accessor: 'phone' },
-                    { Header: 'Course', accessor: 'course' },
                   ]}
-                  data={studentData}
+                  data={dashboard?.recentlyJoined || []}
                 />
               </div>
             </div>

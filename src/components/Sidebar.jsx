@@ -5,7 +5,10 @@ import { logOut } from "../redux/userSlice";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logOut());
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      dispatch(logOut());
+    }
   };
 
   return (
@@ -23,12 +26,6 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/admin/students" activeClassName="active">
-            <i className="fas fa-user-graduate icon"></i>
-            <p>Students Manager</p>
-          </NavLink>
-        </li>
-        <li className="nav--item">
           <NavLink to="/admin/agents" activeClassName="active">
             <i className="fas fa-user-tie icon"></i>
             <p>Agents Manager</p>
@@ -40,6 +37,12 @@ const Sidebar = () => {
             <p>Form Manager</p>
           </NavLink>
         </li>
+        <li className="nav--item">
+          <NavLink to="/admin/students" activeClassName="active">
+            <i className="fas fa-user-graduate icon"></i>
+            <p>Students Manager</p>
+          </NavLink>
+        </li>      
         <li className="nav--item">
           <NavLink to="/admin/events" activeClassName="active">
             <i className="fas fa-bell icon"></i>
