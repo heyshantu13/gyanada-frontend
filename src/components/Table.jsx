@@ -36,6 +36,8 @@ function StripedTable({ columns,data }) {
   } = useTable({ columns, data }, useFilters, useSortBy);
 
   return (
+    <div className="base--container">
+      
     <Table striped hover {...getTableProps()}>
       <thead>
           {headerGroups.map((headerGroup) => (
@@ -69,6 +71,7 @@ function StripedTable({ columns,data }) {
           })}
         </tbody>
     </Table>
+    </div>
   );
 }
 

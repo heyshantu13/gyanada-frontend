@@ -5,7 +5,10 @@ import { logOut } from "../redux/userSlice";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logOut());
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      dispatch(logOut());
+    }
   };
 
   return (

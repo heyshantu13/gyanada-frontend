@@ -13,20 +13,24 @@ const Dashboard = () => {
   return (
     <>
       {/* Main Page Started */}
-      <div className="base--container">
+      <div className="base--container relative">
         {/* Breadcrumb */}
-        <header className="wrapper">
+        <div className="wrapper">
+        <div>
+          <h4>Dashboard</h4>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link to="/admin/dashboard">Dashboard</Link>
               </li>
-              {/* <li className="breadcrumb-item active" aria-current="page">
-                My Forms
-              </li> */}
             </ol>
           </nav>
-        </header>
+        </div>
+        {/* <button onClick={() => setIsModalActive(true)} className="btn btn-dark">
+          Add Agent
+        </button> */}
+        </div>
+         {/* Breadcrumb */}
         <div className="row">
           <div className="col bg-light p-4 rounded mt-4">
             {/* Min Content Start*/}

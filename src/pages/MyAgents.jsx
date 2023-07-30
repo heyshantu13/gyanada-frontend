@@ -11,7 +11,7 @@ const MyAgents = () => {
     <div className="base--container relative">
       <div className="wrapper">
         <div>
-          <h4>My Agents</h4>
+          <h4>Agent Manager</h4>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
