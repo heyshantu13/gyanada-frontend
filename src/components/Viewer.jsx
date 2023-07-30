@@ -1,14 +1,29 @@
 import { Form } from "@formio/react";
-import { formIoData } from "../assets/FormIoData";
+import { useEffect, useState } from "react";
+import { userRequest } from "../http/axiosInterceptors";
 
 const Viewer = () => {
+  const [formData, setFormData] = useState({});
+  useEffect(() => {
+    const getFormData = async () => {
+      try {
+        const response = await userRequest.get("/form/get");
+        setFormData(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFormData();
+  }, []);
+
+  const { display, components } = formData;
   return (
     <div>
       <Form
         options={{
           saveDraft: true,
         }}
-        form={formIoData}
+        form={{ display, components }}
         // onCustomEvent={handleFormIoEvent}
         // onSubmit={handleSubmit}
         // saveForm={handleSubmit}

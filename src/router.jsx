@@ -6,6 +6,8 @@ import MyForms from "./pages/MyForms";
 import MyAgents from "./pages/MyAgents";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
+import Students from "./pages/Students";
+import Events from "./pages/Events";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "dashboard", // Define the "/dashboard" route here independently
         element: <Dashboard />,
+      },
+      {
+        path: "students",
+        element: <Students />,
       },
       {
         path: "forms",
@@ -30,6 +36,10 @@ export const router = createBrowserRouter([
         element: <AddForm />,
       },
       {
+        path: "events",
+        element: <Events />,
+      },
+      {
         path: "profile",
         element: <Profile />,
       },
@@ -41,6 +51,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <h1>404 Page not found</h1>
-  }
+    element: <h1>404 Page not found</h1>,
+  },
 ]);
