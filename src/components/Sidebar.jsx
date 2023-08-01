@@ -1,13 +1,16 @@
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { logOut } from "../redux/userSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
       dispatch(logOut());
+      navigate("/")
     }
   };
 
