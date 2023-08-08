@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Students from "./pages/Students";
 import Events from "./pages/Events";
+import FormViewer from "./react-native/FormViewer";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
   {
     path: "/", // Move the "/" route outside the "/admin" route
     element: <Login />,
+  },
+  {
+    path: "/native-form",
+    element: <FormViewer />,
   },
   {
     path: "*",

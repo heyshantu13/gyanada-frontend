@@ -37,7 +37,7 @@ const Login = () => {
     try {
       const { email, password } = userDetails;
       const { data } = await publicRequest.post(
-        "http://localhost:8081/api/web/login",
+        "/login",
         { email, password }
       );
       localStorage.setItem("token", data.data.token);
