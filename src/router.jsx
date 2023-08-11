@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Students from "./pages/Students";
 import Events from "./pages/Events";
-import FormViewer from "./react-native/FormViewer";
+import FormRenderer from "./react-native/FormRenderer";
 
 export const router = createBrowserRouter([
   {
@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/native-form",
-    element: <FormViewer />,
+    element: <FormRenderer />,
   },
   {
     path: "*",

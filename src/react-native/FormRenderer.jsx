@@ -1,22 +1,31 @@
 import { Form } from "@formio/react";
-import { useEffect, useState } from "react";
-import { BASE_URL } from "../http/axiosInterceptors";
-// import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useLocation } from "react-router-dom";
 
-const FormViewer = () => {
+const FormRenderer = () => {
   const [formData, setFormData] = useState({
     display: "form",
     components: [],
   });
+  // const location = window.location;
+  // const queryParams = QueryString.parse(location.search, {
+  //   ignoreQueryPrefix: true,
+  // });
+  // const paramValue = queryParams.paramName;
+  // console.log(paramValue);
 
+  const token = useLocation().search.split("=")[1]
+
+  const BASE_URL = "http://192.168.160.134:8082/api/web/form/get";
   useEffect(() => {
     const getFormData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/form/get`, {
+        const response = await axios.get(BASE_URL, {
           headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM0Zjk1ZDZhNGUwZGI5YzRiMmQ0MGQiLCJmdWxsbmFtZSI6ImFuc2h1bCIsImlhdCI6MTY5MTUwMjc2NywiZXhwIjoxNjkxNjc1NTY3fQ.ENCKvPidm6K91GBhjA-hesKeEZqRtZ9zlf3s13dLoxI",
+            //this should be dynamic
+            Authorization: token,
           },
         });
         setFormData((previousValue) => ({
@@ -31,24 +40,23 @@ const FormViewer = () => {
   }, []);
 
   const handleFormIoEvent = () => {
-    // logic here
+    // logic
   };
-
   const handleSubmit = () => {
-    // logic here
+    // logic
   };
-
   const predefined = () => {
-    // logic here
+    // logic
   };
 
+  const { display, components } = formData;
   return (
-    <div>
+    <div className="app--native">
       <Form
         options={{
           saveDraft: true,
         }}
-        form={formData}
+        form={{ display, components }}
         onCustomEvent={handleFormIoEvent}
         onSubmit={handleSubmit}
         saveForm={handleSubmit}
@@ -61,4 +69,4 @@ const FormViewer = () => {
   );
 };
 
-export default FormViewer;
+export default FormRenderer;
