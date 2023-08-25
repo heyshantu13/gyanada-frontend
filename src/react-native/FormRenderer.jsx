@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
+import { publicRequest } from "../http/axiosInterceptors";
 
 const FormRenderer = () => {
   const [formData, setFormData] = useState({
@@ -16,13 +17,13 @@ const FormRenderer = () => {
   // const paramValue = queryParams.paramName;
   // console.log(paramValue);
 
-  const token = useLocation().search.split("=")[1]
+  const token = useLocation().search.split("=")[1];
 
-  const BASE_URL = "http://192.168.160.134:8082/api/web/form/get";
+  const BASE_URL = "http://192.168.160.134:8082/api/web/form";
   useEffect(() => {
     const getFormData = async () => {
       try {
-        const response = await axios.get(BASE_URL, {
+        const response = await axios.get(`${BASE_URL}/get`, {
           headers: {
             //this should be dynamic
             Authorization: token,
@@ -39,14 +40,16 @@ const FormRenderer = () => {
     getFormData();
   }, []);
 
-  const handleFormIoEvent = () => {
+  const handleSubmit = async (response) => {
     // logic
-  };
-  const handleSubmit = () => {
-    // logic
-  };
-  const predefined = () => {
-    // logic
+    console.log(response);
+    const data = await axios.post(`${BASE_URL}/store`, response, {
+      headers: {
+        //this should be dynamic
+        Authorization: token,
+      },
+    });
+    console.log(data);
   };
 
   const { display, components } = formData;
@@ -57,11 +60,8 @@ const FormRenderer = () => {
           saveDraft: true,
         }}
         form={{ display, components }}
-        onCustomEvent={handleFormIoEvent}
         onSubmit={handleSubmit}
         saveForm={handleSubmit}
-        submission={predefined}
-        handleSearchPatient={(e) => console.log(e)}
         saveText="Submit Form"
         onSubmitDone={(data) => console.log(data)}
       />

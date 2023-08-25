@@ -30,7 +30,7 @@ const hideLoader = () => {
   }
 };
 
-export const BASE_URL = "http://localhost:8082/api/web";
+export const BASE_URL = "http://192.168.160.134:8082/api/web";
 
 export const publicRequest = customAxios.create({
   baseURL: BASE_URL,
