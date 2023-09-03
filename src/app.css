@@ -38,7 +38,9 @@
 .sidebar--container {
   width: 100%;
   max-width: 230px;
-  min-height: 100%;
+  min-height: 100vh;
+  border: 1px solid #070a52;
+  /* height: 100%; */
 }
 
 .menu--btn {
@@ -63,6 +65,7 @@
 
 .sidebar {
   width: 100%;
+  min-height: 100vh;
   height: 100%;
   background-color: #070a52;
   padding: 1rem;
@@ -72,6 +75,23 @@
   width: 100%;
   padding: 1rem;
   text-align: center;
+}
+
+.confirm--logout {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  z-index: 99999;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.confirm--logout div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .brand--name h1 {
@@ -129,11 +149,52 @@
 
 /* - - - - - - Dashboard styling - - - - - -  */
 
+.dashboard-data-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+
+/* cards in dashboard */
+
+.card--container {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* tables in dashboard */
+
+.table--container p {
+  font-size: 15px;
+  font-weight: 600;
+  color: #727272;
+}
+
+.card--container:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.2);
+}
+
+
 /* < - - - - - Foooter styling - - - - -> */
 
 .footer {
   width: 100%;
   height: 6rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* - - - - - - Profile button style - - - - - -  */
@@ -155,6 +216,11 @@
 .profile-btn--text h6 {
   font-size: 0.8rem;
   margin: 0;
+  text-transform: capitalize;
+}
+
+.profile-btn--text p {
+  text-transform: capitalize;
 }
 
 .profile-btn--text p {
@@ -170,9 +236,9 @@
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  padding: 1rem;
+  padding: 10px;
   background: white;
-  border-radius: 1rem;
+  border-radius: 10px;
   width: fit-content;
   transition: all 0.3s ease-in;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -185,6 +251,7 @@
   outline: none;
   color: gray;
   background: transparent;
+  margin: 0;
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
 }
@@ -298,8 +365,6 @@ p {
   background-color: #070a52;
 }
 
-
-
 /* - - - - - - - Form Builder - - - - - -  */
 
 .form--builder--header {
@@ -308,4 +373,208 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.sidebar .nav--list .nav--item.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Add these styles to your CSS file */
+
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.dashboard-data-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card--container {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card--container .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #6c757d; /* Adjust the color as needed */
+}
+
+.card--container h5 {
+  margin-bottom: 0.5rem;
+  color: #343a40; /* Adjust the color as needed */
+}
+
+
+.card-count {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #007bff; /* Adjust the color as needed */
+}
+
+.table--container {
+  margin-top: 2rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.recently-joined-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.recently-joined-table {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+
+.icon {
+  font-size: 22px; /* Change the size to your desired value */
+  color: #ffffff; /* Change the color to white */
+  /* Add any other styles you want for the icons */
+}
+
+
+/* - - - - - - - Profile page - - - - -  */
+
+.profile--container {
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  /* box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px; */
+}
+
+.profile-section--header {
+  width: 100%;
+  background-color: rgb(229, 228, 255, 0.5);
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile--details h6 {
+  margin: 0;
+}
+
+.profile--details p {
+  font-size: 11px;
+  color: #343a40;
+  margin: 0;
+}
+
+.user--data {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: rgb(238, 130, 238);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-icon p {
+  margin: 0;
+  letter-spacing: 1px;
+  font-size: 15px;
+  color: white;
+  font-weight: 600;
+}
+
+.other--details {
+  margin: 2rem 0;
+}
+
+.details h6 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #343a40;
+}
+
+.details p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #727272;
+}
+
+
+/* Add agent modal */
+
+.add-agent-modal {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  background-color: rgba(0, 0, 0, 0.5); /* Add background color with opacity for the modal background */
+}
+
+.add-agent-modal form {
+  margin: 2rem 0;
+  max-width: 30rem;
+  width: 100%;
+  height: 80vh;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.form--actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.close-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: block;
+  margin: 0;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 99999;
+  border-radius: 50% !important;
+}
+
+
+.pagination--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }

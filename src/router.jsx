@@ -6,36 +6,56 @@ import MyForms from "./pages/MyForms";
 import MyAgents from "./pages/MyAgents";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
+import Students from "./pages/Students";
+import Events from "./pages/Events";
+import FormRenderer from "./react-native/FormRenderer";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/admin",
     element: <App />,
     children: [
+      // Define other admin-related routes here
       {
-        path: "/",
+        path: "dashboard", // Define the "/dashboard" route here independently
         element: <Dashboard />,
       },
       {
-        path: "/my-forms",
+        path: "students",
+        element: <Students />,
+      },
+      {
+        path: "forms",
         element: <MyForms />,
       },
       {
-        path: "/my-agents",
+        path: "agents",
         element: <MyAgents />,
       },
       {
-        path: "/add-form",
+        path: "create/form",
         element: <AddForm />,
       },
       {
-        path: "/profile",
+        path: "events",
+        element: <Events />,
+      },
+      {
+        path: "profile",
         element: <Profile />,
       },
     ],
   },
   {
-    path: "/login",
+    path: "/", // Move the "/" route outside the "/admin" route
     element: <Login />,
+  },
+  {
+    path: "/native-form",
+    element: <FormRenderer />,
+  },
+  {
+    path: "*",
+    element: <h1>404 Page not found</h1>,
   },
 ]);

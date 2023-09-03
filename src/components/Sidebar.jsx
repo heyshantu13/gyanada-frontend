@@ -1,9 +1,19 @@
-import { NavLink } from "react-router-dom";
-import dashboardIcon from "../assets/icons/dashboard.svg";
-import formsIcon from "../assets/icons/forms.svg";
-import agentsIcon from "../assets/icons/agents.svg";
+import { useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logOut } from "../redux/userSlice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      dispatch(logOut());
+      navigate("/")
+    }
+  };
+
   return (
     <div className="sidebar">
       <div className="brand--name">
@@ -13,22 +23,46 @@ const Sidebar = () => {
 
       <ul className="nav--list">
         <li className="nav--item">
-          <NavLink to="/">
-            <img src={dashboardIcon} alt="dashboard icon" />
+          <NavLink to="/admin/dashboard" activeClassName="active">
+            <i className="fas fa-chart-bar icon"></i>
             <p>Dashboard</p>
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/my-forms">
-            <img src={formsIcon} alt="forms icon" />
-            <p>My Forms</p>
+          <NavLink to="/admin/agents" activeClassName="active">
+            <i className="fas fa-user-tie icon"></i>
+            <p>Agents Manager</p>
           </NavLink>
         </li>
         <li className="nav--item">
-          <NavLink to="/my-agents">
-            <img src={agentsIcon} alt="agents icon" />
-            <p>Agents</p>
+          <NavLink to="/admin/forms" activeClassName="active">
+            <i className="fas fa-clipboard-list icon"></i>
+            <p>Form Manager</p>
           </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink to="/admin/students" activeClassName="active">
+            <i className="fas fa-user-graduate icon"></i>
+            <p>Students Manager</p>
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink to="/admin/events" activeClassName="active">
+            <i className="fas fa-bell icon"></i>
+            <p>Notifications & Events</p>
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink to="/admin/profile" activeClassName="active">
+            <i className="fas fa-user icon"></i>
+            <p>My Profile</p>
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <a onClick={handleLogout} to="/" activeClassName="active">
+            <i className="fas fa-sign-out-alt icon"></i>
+            <p>Logout</p>
+          </a>
         </li>
       </ul>
     </div>
