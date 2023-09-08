@@ -30,7 +30,7 @@ const hideLoader = () => {
   }
 };
 
-export const BASE_URL = "http://13.232.230.93:9000/api/web";
+export const BASE_URL = "http://13.232.230.93:9090/api/web";
 
 export const publicRequest = customAxios.create({
   baseURL: BASE_URL,

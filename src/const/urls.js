@@ -1,8 +1,8 @@
 export const HTTP_BASE_URL =  {
     "local": {
-      "http": "localhost:8081/api/web"
+      "http": "13.232.230.93:9090/api/web"
     },
     "prod": {
-      "http": "localhost:8081/api/web"
+      "http": "13.232.230.93:9090/api/web"
     }
 }
