@@ -19,7 +19,7 @@ const FormRenderer = () => {
 
   const token = useLocation().search.split("=")[1];
 
-  const BASE_URL = "http://192.168.160.134:8082/api/web/form";
+  const BASE_URL = "http://13.232.230.93:9000/api/web/form";
   useEffect(() => {
     const getFormData = async () => {
       try {
