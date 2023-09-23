@@ -42,9 +42,12 @@ const Login = () => {
       );
       localStorage.setItem("token", data.data.token);
       dispatch(setToken(data.data.token));
+      // notifySuccess("Login Successfull!");
       if (data.data.role === "admin") {
         notifySuccess(`${data.message}`);
         setTimeout(() => navigate("/admin/dashboard"), 1200);
+      }else {
+        notifyError("Only Admin Can Login");
       }
     } catch (error) {
       console.log(error);
