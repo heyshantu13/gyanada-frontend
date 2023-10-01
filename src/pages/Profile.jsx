@@ -17,7 +17,7 @@ const Profile = () => {
     fetchUserData();
   }, []);
 
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <div className="base--container">

@@ -359,6 +359,7 @@ p {
   font-weight: 600;
   color: white;
   transition: all 0.3s ease-in-out;
+  display: block;
 }
 
 .login--btn:hover {
