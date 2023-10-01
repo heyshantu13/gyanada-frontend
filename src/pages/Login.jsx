@@ -13,6 +13,12 @@ const Login = () => {
   });
   const errors = {};
 
+  const [status, setStatus] = useState({
+    _LOADING: false,
+    _ERROR: false,
+    _SUCCESS: false,
+  });
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [firstErrorField, setFirstErrorField] = useState(null);
@@ -29,32 +35,46 @@ const Login = () => {
     // Find the first error field encountered
     const firstError = Object.keys(errors).find((field) => errors[field]);
     if (firstError) {
+      setStatus({ ...status, _ERROR: true });
       setFirstErrorField(firstError);
       notifyError(errors[firstError]);
       return;
     }
 
     try {
+      setStatus({ ...status, _LOADING: true, _ERROR: false, _SUCCESS: false });
       const { email, password } = userDetails;
-      const { data } = await publicRequest.post(
-        "/login",
-        { email, password }
-      );
+      const { data } = await publicRequest.post("/login", { email, password });
       localStorage.setItem("token", data.data.token);
       dispatch(setToken(data.data.token));
       // notifySuccess("Login Successfull!");
       if (data.data.role === "admin") {
         notifySuccess(`${data.message}`);
         setTimeout(() => navigate("/admin/dashboard"), 1200);
-      }else {
+        setStatus({
+          ...status,
+          _SUCCESS: true,
+          _LOADING: false,
+          _ERROR: false,
+        });
+      } else {
         notifyError("Only Admin Can Login");
+        setStatus({
+          ...status,
+          _ERROR: true,
+          _SUCCESS: false,
+          _LOADING: false,
+        });
       }
     } catch (error) {
       console.log(error);
       notifyError("You have entered an invalid email or password");
       console.warn(error);
+      setStatus({ ...status, _ERROR: true, _SUCCESS: false, _LOADING: false });
     }
   };
+
+  // console.log(status);
 
   return (
     <>
@@ -97,6 +117,7 @@ const Login = () => {
             </div>
             <button onClick={(e) => handleSubmit(e)} className="login--btn">
               Login In
+              {status._LOADING && <div className="loader"></div>}
             </button>
           </form>
         </div>

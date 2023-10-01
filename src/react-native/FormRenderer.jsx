@@ -3,27 +3,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
-import { publicRequest } from "../http/axiosInterceptors";
+import { BASE_URL } from "../http/axiosInterceptors";
+import { notifyError, notifySuccess } from "../components/ToastMessage";
 
 const FormRenderer = () => {
   const [formData, setFormData] = useState({
     display: "form",
     components: [],
   });
-  // const location = window.location;
-  // const queryParams = QueryString.parse(location.search, {
-  //   ignoreQueryPrefix: true,
-  // });
-  // const paramValue = queryParams.paramName;
-  // console.log(paramValue);
 
   const token = useLocation().search.split("=")[1];
 
-  const BASE_URL = "http://13.232.230.93:9090/api/web/form";
   useEffect(() => {
     const getFormData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/get`, {
+        const response = await axios.get(`${BASE_URL}/form/get`, {
           headers: {
             //this should be dynamic
             Authorization: token,
@@ -41,15 +35,19 @@ const FormRenderer = () => {
   }, []);
 
   const handleSubmit = async (response) => {
-    // logic
-    console.log(response);
-    const data = await axios.post(`${BASE_URL}/store`, response, {
-      headers: {
-        //this should be dynamic
-        Authorization: token,
-      },
-    });
-    console.log(data);
+    try {
+      const data = await axios.post(`${BASE_URL}/form/store`, response, {
+        headers: {
+          //this should be dynamic
+          Authorization: token,
+        },
+      });
+      console.log(data);
+      notifySuccess("Student added Successfully");
+    } catch (error) {
+      console.log(error);
+      // notifyError("Something went wrong, please try again");
+    }
   };
 
   const { display, components } = formData;
@@ -63,7 +61,6 @@ const FormRenderer = () => {
         onSubmit={handleSubmit}
         saveForm={handleSubmit}
         saveText="Submit Form"
-        onSubmitDone={(data) => console.log(data)}
       />
     </div>
   );

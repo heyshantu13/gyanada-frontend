@@ -1,0 +1,340 @@
+{
+  "label": "Form",
+  "tableView": false,
+  "key": "form",
+  "type": "container",
+  "input": true,
+  "components": [
+    {
+      "label": "HTML",
+      "attrs": [
+        {
+          "attr": "",
+          "value": ""
+        }
+      ],
+      "content": "Student Form",
+      "refreshOnChange": false,
+      "customClass": "h4 bg-primary p-2 text-light rounded-top",
+      "key": "html",
+      "type": "htmlelement",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "label": "Upload",
+      "customClass": "m-2",
+      "tableView": false,
+      "storage": "base64",
+      "webcam": false,
+      "fileTypes": [
+        {
+          "label": "",
+          "value": ""
+        }
+      ],
+      "key": "file",
+      "type": "file",
+      "input": true
+    },
+    {
+      "label": "Basic Details",
+      "customClass": "mb-4 p-2 border rounded",
+      "tableView": false,
+      "key": "basicDetails",
+      "type": "container",
+      "input": true,
+      "components": [
+        {
+          "label": "HTML",
+          "attrs": [
+            {
+              "attr": "",
+              "value": ""
+            }
+          ],
+          "content": "Basic Details",
+          "refreshOnChange": false,
+          "customClass": "fw-bold",
+          "key": "html1",
+          "type": "htmlelement",
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "First Name",
+          "placeholder": "First Name",
+          "tableView": true,
+          "key": "firstName",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Middle Name",
+          "placeholder": "Middle Name",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "middleName",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Last Name",
+          "placeholder": "Last Name",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "lastName",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Name of applicant as it should appear on the fee receipt, hall ticket & certificate",
+          "placeholder": "Fullname",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "fullname",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Date of Birth",
+          "placeholder": "DD/MM/YYYY",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "dateOfBirth",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Gender",
+          "optionsLabelPosition": "right",
+          "customClass": "mb-2",
+          "inline": true,
+          "tableView": false,
+          "values": [
+            {
+              "label": "Male",
+              "value": "male",
+              "shortcut": ""
+            },
+            {
+              "label": "female",
+              "value": "female",
+              "shortcut": ""
+            },
+            {
+              "label": "Other",
+              "value": "other",
+              "shortcut": ""
+            }
+          ],
+          "key": "gender",
+          "type": "radio",
+          "input": true
+        }
+      ]
+    },
+    {
+      "label": "Contact Details",
+      "customClass": "mb-4 p-2 border rounded",
+      "tableView": false,
+      "key": "contactDetails",
+      "type": "container",
+      "input": true,
+      "components": [
+        {
+          "label": "HTML",
+          "attrs": [
+            {
+              "attr": "",
+              "value": ""
+            }
+          ],
+          "content": "Contact Details",
+          "refreshOnChange": false,
+          "customClass": "fw-bold",
+          "key": "html2",
+          "type": "htmlelement",
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Phone Number (own)",
+          "placeholder": "Phone Number (own)",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "phone",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Email",
+          "placeholder": "johndoe@example.com",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "email",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Building / House No.",
+          "placeholder": "Building / House No.",
+          "tableView": true,
+          "key": "buildingHouseNo",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Street",
+          "placeholder": "Street",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "street",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "City / Village / Suburb",
+          "placeholder": "City / Village / Suburb",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "cityVillageSuburb",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Tehsil / Block",
+          "placeholder": "Tehsil / Block",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "tehsilBlock",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "District",
+          "placeholder": "District",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "district",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "Pincode",
+          "placeholder": "Pincode",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "pincode",
+          "type": "textfield",
+          "input": true
+        }
+      ]
+    },
+    {
+      "label": "Educational Details",
+      "customClass": "mb-4 p-2 border rounded",
+      "tableView": false,
+      "key": "educationalDetails",
+      "type": "container",
+      "input": true,
+      "components": [
+        {
+          "label": "HTML",
+          "attrs": [
+            {
+              "attr": "",
+              "value": ""
+            }
+          ],
+          "content": "Educational Details",
+          "refreshOnChange": false,
+          "customClass": "fw-bold",
+          "key": "html3",
+          "type": "htmlelement",
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Student Class",
+          "placeholder": "Student Class",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "studentClass",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "School Name",
+          "placeholder": "School Name",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "schoolName",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "School City",
+          "placeholder": "School City",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "schoolCity",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "School Address",
+          "placeholder": "School Address",
+          "customClass": "mb-2",
+          "tableView": true,
+          "key": "schoolAddress",
+          "type": "textfield",
+          "input": true
+        },
+        {
+          "label": "School PIN",
+          "placeholder": "School PIN",
+          "tableView": true,
+          "key": "schoolPin",
+          "type": "textfield",
+          "input": true
+        }
+      ]
+    },
+    {
+      "label": "Other",
+      "customClass": "mb-4 p-2 border rounded",
+      "tableView": false,
+      "key": "other",
+      "type": "container",
+      "input": true,
+      "components": [
+        {
+          "label": "HTML",
+          "attrs": [
+            {
+              "attr": "",
+              "value": ""
+            }
+          ],
+          "content": "Other Details",
+          "refreshOnChange": false,
+          "customClass": "fw-bold",
+          "key": "html4",
+          "type": "htmlelement",
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Submit",
+      "showValidations": false,
+      "tableView": false,
+      "key": "submit",
+      "type": "button",
+      "saveOnEnter": false,
+      "input": true
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+    "data": {
+        "form": {
+            "file": [],
+            "basicDetails": {
+                "firstName": "ANSHUL",
+                "middleName": "SANJAY",
+                "lastName": "KULKARNI",
+                "fullname": "ANSHUL SANJAY KULKARNI",
+                "dateOfBirth": "03/02/2006",
+                "gender": "male"
+            },
+            "contactDetails": {
+                "phone": "09561390248",
+                "email": "anshulkulkarni00@gmail.com",
+                "buildingHouseNo": "ASD",
+                "street": "ABC road",
+                "cityVillageSuburb": "GONDIA",
+                "tehsilBlock": "Gondia",
+                "district": "Gondia",
+                "pincode": "441614"
+            },
+            "educationalDetails": {
+                "studentClass": "12th",
+                "schoolName": "Orange",
+                "schoolCity": "Gondia",
+                "schoolAddress": "Gondia",
+                "schoolPin": "441601"
+            },
+            "other": {}
+        },
+        "submit": true
+    },
+    "metadata": {
+        "timezone": "Asia/Calcutta",
+        "offset": 330,
+        "origin": "http://192.168.229.134:5173",
+        "referrer": "",
+        "browserName": "Netscape",
+        "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Mobile Safari/537.36",
+        "pathName": "/native-form/",
+        "onLine": true
+    },
+    "state": "submitted",
+    "_vnote": ""
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { IoCloseSharp } from "react-icons/io5";
+// import { IoCloseSharp } from "react-icons/io5";
 import { userMultipartRequest } from "../http/axiosInterceptors";
+import { notifyError, notifySuccess } from "./ToastMessage";
 
 const AddAgent = ({ setIsModalActive }) => {
   const [agentDetails, setAgentDetails] = useState({
@@ -13,14 +14,36 @@ const AddAgent = ({ setIsModalActive }) => {
     photo: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setAgentDetails({ ...agentDetails, photo: file });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Check if any field is empty
+    for (const key in agentDetails) {
+      if (!agentDetails[key]) {
+        newErrors[key] = "This field is required";
+      }
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      notifyError("Every Field is required!")
+      return; // Don't submit if there are validation errors
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -32,9 +55,12 @@ const AddAgent = ({ setIsModalActive }) => {
         "/user/agent/create",
         formData
       );
-      console.log(response);
+      // console.log(response);
+      notifySuccess("Agent created!");
+      setIsModalActive(false)
     } catch (error) {
       console.error(error);
+      notifyError("Something went wrong, please try again!");
     } finally {
       setIsSubmitting(false);
     }
@@ -44,6 +70,7 @@ const AddAgent = ({ setIsModalActive }) => {
     e.preventDefault();
     setIsModalActive(false);
   };
+
 
   return (
     <div className="add-agent-modal">
@@ -77,6 +104,7 @@ const AddAgent = ({ setIsModalActive }) => {
             type="password"
             placeholder="Password"
           />
+
         </div>
         <div className="input">
           <label>Phone</label>
@@ -93,7 +121,7 @@ const AddAgent = ({ setIsModalActive }) => {
           <input
             onChange={handleFileChange}
             type="file"
-            accept=".jpg, .jpeg, .png" // Add accepted file formats if needed
+            accept=".jpg, .jpeg, .png"
             name="photo"
           />
         </div>
@@ -117,11 +145,8 @@ const AddAgent = ({ setIsModalActive }) => {
             placeholder="Civil Line, Gondia"
           />
         </div>
-        <div  className="form--actions">
-          <button
-            onClick={(e) => handleCancel(e)}
-            className="btn btn-danger"
-          >
+        <div className="form--actions">
+          <button onClick={(e) => handleCancel(e)} className="btn btn-danger">
             Cancel
           </button>
           <button onClick={(e) => handleSave(e)} className="btn btn-success">
