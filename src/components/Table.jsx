@@ -1,25 +1,29 @@
+/* eslint-disable react/jsx-key */
 import { useTable, useSortBy, useFilters } from "react-table";
 import { useMemo, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { getImage } from "../utils/getImage";
 import { BASE_URL } from "../http/axiosInterceptors";
 
-function StripedTable({ columns, data }) {
+function StripedTable({ columns, data,editUrl, viewUrl }) {
   // State to store the data for the modal
   const [modalData, setModalData] = useState(null);
+
 
   // Function to handle the "View" action
   const handleView = (rowData) => {
     // Set the data for the modal
     setModalData(rowData);
-    // TODO: Show the Bootstrap modal for view
+    // Redirect to the view URL
+    window.location.href = `${viewUrl}/${rowData.id}`; // Assuming the ID is used in the URL
   };
 
   // Function to handle the "Edit" action
   const handleEdit = (rowData) => {
     // Set the data for the modal
     setModalData(rowData);
-    // TODO: Show the Bootstrap modal for edit
+    // Redirect to the edit URL
+    window.location.href = `${editUrl}/${rowData.id}`; // Assuming the ID is used in the URL
   };
 
   const columnsData = useMemo(() => columns);
