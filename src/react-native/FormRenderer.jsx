@@ -59,7 +59,7 @@ const FormRenderer = () => {
         }}
         form={{ display, components }}
         onSubmit={handleSubmit}
-        saveForm={handleSubmit}
+        // saveForm={handleSubmit}
         saveText="Submit Form"
       />
     </div>
