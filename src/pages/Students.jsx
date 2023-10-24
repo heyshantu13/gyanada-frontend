@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StripedTable from "../components/Table";
 import { userRequest } from "../http/axiosInterceptors";
+import { notifyError } from "../components/ToastMessage";
 
 // Sample data for demonstration purposes
 const studentData = [
@@ -31,8 +32,6 @@ const filterFields = [
   "address",
   "city",
   "pincode",
-  "dateOfBirth",
-  "age",
   "schoolName",
   "studentClass",
   "schoolCity",
@@ -47,9 +46,12 @@ function Students() {
   const [filteredData, setFilteredData] = useState([]);
 
   const handleFilter = async () => {
+    if (!searchName) {
+      notifyError("Search field can't be empty!");
+    }
     try {
       const res = await userRequest.get(
-        `/user/student?search=${searchName}&selectedFilter=${selectedFilter}&filterValue=${filterValue}`
+        `/user/student?search=${searchName}&selectedFilter=${selectedFilter}&filterValue=${searchName}`
       );
       setFilteredData(res.data.data.students);
     } catch (error) {
@@ -69,8 +71,7 @@ function Students() {
     getStudentData();
   }, []);
 
-  console.log(filteredData)
-
+  // console.log(filterValue)
   return (
     <div className="base--container">
       <div className="wrapper">
@@ -96,9 +97,9 @@ function Students() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Filter by Name"
+                  placeholder="Search..."
                   value={searchName}
-                  onChange={(e) => setSearchName(e.target.value)}
+                  onChange={(e) => setSearchName(e.target.value.trim())}
                 />
               </div>
               <div className="col-md-3 mb-2">
@@ -130,10 +131,10 @@ function Students() {
         <StripedTable
           columns={[
             { Header: "Sr. No", accessor: "id" },
-            { Header: "Name", accessor: "name" },
+            { Header: "Name", accessor: "firstname" },
             { Header: "Email", accessor: "email" },
             { Header: "Phone", accessor: "phone" },
-            { Header: "Course", accessor: "course" },
+            { Header: "Course", accessor: "studentClass" },
           ]}
           data={filteredData}
           editUrl="/edit-student" // Replace with your edit URL
