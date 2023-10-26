@@ -37,7 +37,7 @@ function StripedTable({ columns, data,editUrl, viewUrl }) {
     prepareRow,
     state,
   } = useTable({ columns, data }, useFilters, useSortBy);
-
+  console.log(rows)
   return (
     <div className="base--container">
       <Table striped hover {...getTableProps()}>

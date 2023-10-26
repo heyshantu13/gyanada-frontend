@@ -1,6 +1,6 @@
 import { Form } from "@formio/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
 import { BASE_URL } from "../http/axiosInterceptors";
@@ -13,13 +13,36 @@ const FormRenderer = () => {
   });
 
   const token = useLocation().search.split("=")[1];
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
+
+  // Wrap the handleSubmit function with useCallback
+  const handleSubmit = useCallback(async (response) => {
+    if (isSubmitting) {
+      return; // If already submitting, do nothing
+    }
+
+    setIsSubmitting(true); // Set submitting state to true
+
+    try {
+      const data = await axios.post(`${BASE_URL}/form/store`, response, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      console.log(data);
+      notifySuccess("Student added Successfully");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false); // Reset submitting state
+    }
+  }, [isSubmitting, token]); // Include isSubmitting and token in the dependency array
 
   useEffect(() => {
     const getFormData = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/form/get`, {
           headers: {
-            //this should be dynamic
             Authorization: token,
           },
         });
@@ -32,23 +55,7 @@ const FormRenderer = () => {
       }
     };
     getFormData();
-  }, []);
-
-  const handleSubmit = async (response) => {
-    try {
-      const data = await axios.post(`${BASE_URL}/form/store`, response, {
-        headers: {
-          //this should be dynamic
-          Authorization: token,
-        },
-      });
-      console.log(data);
-      notifySuccess("Student added Successfully");
-    } catch (error) {
-      console.log(error);
-      // notifyError("Something went wrong, please try again");
-    }
-  };
+  }, [token]); // Include token in the dependency array
 
   const { display, components } = formData;
   return (
@@ -59,8 +66,8 @@ const FormRenderer = () => {
         }}
         form={{ display, components }}
         onSubmit={handleSubmit}
-        // saveForm={handleSubmit}
         saveText="Submit Form"
+        disableSubmit={isSubmitting} // Disable the submit button when submitting
       />
     </div>
   );
